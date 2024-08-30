@@ -16,6 +16,7 @@ public class Program {
 		try(BufferedReader br = new BufferedReader(new FileReader(arquivo))) {
 			String conteudo;
 			int totalLinhas = 0;
+			int totalPalavras = 0;
 			
 			// Total de linhas
 			while((conteudo = br.readLine()) != null) {
@@ -25,10 +26,20 @@ public class Program {
 				int partesValidas = (int) java.util.Arrays.stream(linhas).filter(parte -> !parte.trim().isEmpty()).count();
 				totalLinhas += partesValidas;		
 				
-			}
+				// Total de palavras
+				String[] palavras = conteudo.split("\\s+");
+				for (String palavra : palavras) {
+					if (!palavra.trim().isEmpty()) {
+						totalPalavras++;
+					}
+				}
+				
+				
+			}						
 			
 				
 			System.out.println("Total de linhas: " +  totalLinhas);
+			System.out.println("Total de palavras: " + totalPalavras);
 			
 			
 		} catch (IOException e) {
