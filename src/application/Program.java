@@ -17,16 +17,20 @@ public class Program {
 			String conteudo;
 			int totalLinhas = 0;
 			int totalPalavras = 0;
+			int totalCaracter = 0;
 			
 			// Total de linhas
 			while((conteudo = br.readLine()) != null) {
+				
 				// Separando com . porém pode criar espaços vazios se estiver ao final da palavra
+				
 				String[] linhas = conteudo.split("\\.");
 				// Ignorando as partes vazias
 				int partesValidas = (int) java.util.Arrays.stream(linhas).filter(parte -> !parte.trim().isEmpty()).count();
 				totalLinhas += partesValidas;		
 				
 				// Total de palavras
+				
 				String[] palavras = conteudo.split("\\s+");
 				for (String palavra : palavras) {
 					if (!palavra.trim().isEmpty()) {
@@ -34,12 +38,20 @@ public class Program {
 					}
 				}
 				
+				// Total de caracteres
+				
+				for (char caractere : conteudo.toCharArray()) {
+					if (Character.isLetter(caractere) || caractere == '.' || caractere == ',') {
+						totalCaracter++;
+					}
+				}
 				
 			}						
 			
 				
-			System.out.println("Total de linhas: " +  totalLinhas);
-			System.out.println("Total de palavras: " + totalPalavras);
+			System.out.println("Total de Linhas: " +  totalLinhas);
+			System.out.println("Total de Palavras: " + totalPalavras);
+			System.out.println("Total de Caracteres: " + totalCaracter);
 			
 			
 		} catch (IOException e) {
